@@ -25,7 +25,13 @@
   "keywords": [
     "compute.io",
     "compute",
-    "computation"
+    "computation",
+    "statistics",
+    "stats",
+    "quantiles",
+    "quartiles",
+    "iqr",
+    "interquartile range"
   ],
   "bugs": {
     "url": "https://github.com/compute-io/iqr/issues"
