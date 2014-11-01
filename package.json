@@ -1,6 +1,6 @@
 {
   "name": "compute-iqr",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Computes the interquartile range for an array of values.",
   "author": {
     "name": "Athan Reines",
