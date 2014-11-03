@@ -1,3 +1,5 @@
+'use strict';
+
 var iqr = require( './../lib' );
 
 var data = new Array( 100 );

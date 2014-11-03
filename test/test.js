@@ -1,3 +1,4 @@
+'use strict';
 
 // MODULES //
 
@@ -17,7 +18,6 @@ var expect = chai.expect,
 // TESTS //
 
 describe( 'compute-iqr', function tests() {
-	'use strict';
 
 	it( 'should export a function', function test() {
 		expect( iqr ).to.be.a( 'function' );
@@ -40,7 +40,29 @@ describe( 'compute-iqr', function tests() {
 		}
 		function badValue( value ) {
 			return function() {
-				iqr( value );
+				iqr( value, {} );
+			};
+		}
+	});
+
+	it( 'should throw an error if provided a non-object for options', function test() {
+		var values = [
+				'5',
+				5,
+				true,
+				undefined,
+				null,
+				NaN,
+				function(){},
+				[]
+			];
+
+		for ( var i = 0; i < values.length; i++ ) {
+			expect( badValue( values[i] ) ).to.throw( TypeError );
+		}
+		function badValue( value ) {
+			return function() {
+				iqr( [], value );
 			};
 		}
 	});
@@ -53,6 +75,12 @@ describe( 'compute-iqr', function tests() {
 		expected = 2;
 
 		assert.strictEqual( iqr( data ), expected );
+
+		// Sorted:
+		data.sort( function sort( a, b ) {
+			return a - b;
+		});
+		assert.strictEqual( iqr( data, {'sorted': true} ), expected );
 
 		// Quartiles: [3, 7]; iqr: 4
 		data = [ 1, 3, 5, 7 ];

@@ -2,7 +2,7 @@ Interquartile Range
 ===
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url]
 
-> Computes the interquartile range (iqr) for an array of values.
+> Computes the [interquartile range](http://en.wikipedia.org/wiki/Interquartile_range) (iqr) for an array of values.
 
 
 ## Installation
@@ -23,6 +23,29 @@ var iqr = require( 'compute-iqr' );
 ```
 
 
+#### iqr( arr[, opts] )
+
+Computes the interquartile range provided an input `array`.
+
+``` javascript
+var unsorted = [ 8, 2, 3, 9, 5, 1, 4, 10, 7, 0, 6 ];
+
+var r = iqr( unsorted );
+// returns 6
+```
+
+If the input `array` is already `sorted` in __ascending__ order, set the `sorted` flag to `true`.
+
+``` javascript
+var sorted = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ];
+
+var r = iqr( sorted, {'sorted': true} );
+// returns 6
+```
+
+Additional options are the same as for the [quantile](https://github.com/compute-io/quantile) module.
+
+
 ## Examples
 
 ``` javascript
@@ -40,6 +63,11 @@ To run the example code from the top-level application directory,
 ``` bash
 $ node ./examples/index.js
 ```
+
+
+## Notes
+
+If the input `array` is not sorted in __ascending__ order, the function is `O( N log( N ) )`. If the input `array` is sorted, the function is `O(1)`.
 
 
 ## Tests
